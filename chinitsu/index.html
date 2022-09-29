@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chinitsu Waits</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" 
+      type="image/png" 
+      href="fire_icon.png">
+</head>
+<body>
+<h3>Chinitsu Waits</h3>
+<p>Chinitsu wait training. "Create Hand" generates a totally random set of tiles of 1 suit, and 
+you should try to guess the hand state (won hand, tenpai, or 1+ shanten), and if the hand is not won, the optimal discard and the waits.</p>
+<div class="center1">
+	<div id="tile0" class="tile"></div>
+	<div id="tile1" class="tile"></div>
+	<div id="tile2" class="tile"></div>
+	<div id="tile3" class="tile"></div>
+	<div id="tile4" class="tile"></div>
+	<div id="tile5" class="tile"></div>
+	<div id="tile6" class="tile"></div>
+	<div id="tile7" class="tile"></div>
+	<div id="tile8" class="tile"></div>
+	<div id="tile9" class="tile"></div>
+	<div id="tile10" class="tile"></div>
+	<div id="tile11" class="tile"></div>
+	<div id="tile12" class="tile"></div>
+	<div id="tile13" class="tile"></div>
+</div>
+<div class="center2">
+	<button type="button" onclick="switchColor()" class="button">Change Tile Color</button>
+	<button type="button" onclick="createHand()" class="button">Create Hand</button>
+	<button id="answer" type="button" onclick="" class="button">Answer</button>
+</div>
+<p class=attribution>Images taken from https://github.com/FluffyStuff/riichi-mahjong-tiles with permission under the CC attribution lisence.</p>
+<script src="main.js"></script>
+</body>
+</html>
