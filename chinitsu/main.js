@@ -3,7 +3,7 @@ var suit;
 var hand;
 function createHand(value) {
 	//hand
-	hand = new Array(14);
+	hand = new Array(Number(document.getElementById("handsize").value));
 	//iteration variables
 	var i;
 	var c;
@@ -38,6 +38,9 @@ function drawHand() {
 	var shorthand = ""; 
 	//iteration variable
 	var i;
+	for (i = 0; i < 14; i++) {
+		document.getElementById("tile" + i).innerHTML = "";
+	}
 	for (i = 0; i < hand.length; i++) {
 		shorthand += String(hand[i]);
 		document.getElementById("tile" + i).innerHTML = "<img class=front src=\"" + color + "/Front.svg\"><img class=tilepaint src=\"" + color + "/" + suit + hand[i] + ".svg\">";
