@@ -1,6 +1,6 @@
 body {
     color: #eee;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 1.6;
     margin: 40px auto;
     max-width: 1000px;
@@ -22,7 +22,25 @@ h3 {
 a {
     color: #68c8d2;
 }
+textarea {
+	color: #eee;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 40px auto;
+    max-width: 1000px;
+    padding: 0 10px;
+    background-color: #222;
+}
+select {
+	margin: 4px 2px;
+	border: 2px solid #666;
+	color: #eee;
+    font-size: 20px;
+    background-color: #333;
+}
 .button {
+	color: #eee;
+    font-size: 20px;
     background-color: #333;
     border: 2px solid #666;
     display: inline-block;
@@ -45,6 +63,7 @@ a {
     max-width: 470px;
 	display: flex;
 	justify-content: center;
+	padding-bottom: 2%;
 }
 .text-spacing {
     margin: 70px;
@@ -65,7 +84,6 @@ a {
 	width: 80%;
 }
 .attribution {
-	font-size: 12px;
-	position: absolute;
-	bottom: 5%
+	padding-top: 20%;
+	font-size: 10px;
 }
