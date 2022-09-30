@@ -43,12 +43,33 @@ function drawHand() {
 		document.getElementById("tile" + i).innerHTML = "";
 	}
 	for (i = 0; i < hand.length; i++) {
-		shorthand += String(hand[i]);
 		document.getElementById("tile" + i).innerHTML = "<img class=front src=\"" + color + "/Front.svg\"><img class=tilepaint src=\"" + color + "/" + suit + hand[i] + ".svg\">";
+	}
+	for (i = 0; i < 14; i++) {
+		if (i < hand.length) {
+			shorthand += String(hand[i]);
+			if (i == hand.length - 1) {
+				shorthand += suit == "Man" ? "m" : suit == "Pin" ? "p" : "s";
+			}
+		}
+		else {
+			if (i < 8) {
+				shorthand += "5";
+			}
+			else if (i < 11) {
+				shorthand += "6";
+			}
+			else {
+				shorthand += "7";
+				if (i == 13) {
+					shorthand += "z";
+				}
+			}
+		}
 	}
 	
 	//add link to tenhou
-	shorthand += suit == "Man" ? "m" : suit == "Pin" ? "p" : "s";
+	
 	//document.getElementById("answer").setAttribute("onclick","window.open('https://tenhou.net/2/?q=" + shorthand + "');");
 }
 function switchColor() {
@@ -56,6 +77,6 @@ function switchColor() {
 	drawHand();
 }
 function getAnswer() {
-	document.getElementsByTagName("iframe")[0].src = "https://tenhou.net/2/?q=" + shorthand
+	document.getElementsByTagName("iframe")[0].src = "https://tenhou.net/2/?q=" + shorthand;
 }
 createHand();
