@@ -1,6 +1,7 @@
 var color = "Regular";
 var suit;
 var hand;
+var shorthand; 
 function createHand(value) {
 	//hand
 	hand = new Array(Number(document.getElementById("handsize").value));
@@ -35,7 +36,7 @@ function createHand(value) {
 	drawHand();
 }
 function drawHand() {
-	var shorthand = ""; 
+	shorthand = ""; 
 	//iteration variable
 	var i;
 	for (i = 0; i < 14; i++) {
@@ -48,10 +49,13 @@ function drawHand() {
 	
 	//add link to tenhou
 	shorthand += suit == "Man" ? "m" : suit == "Pin" ? "p" : "s";
-	document.getElementById("answer").setAttribute("onclick","window.open('https://tenhou.net/2/?q=" + shorthand + "');");
+	//document.getElementById("answer").setAttribute("onclick","window.open('https://tenhou.net/2/?q=" + shorthand + "');");
 }
 function switchColor() {
 	color = color == "Regular" ? "Black" : "Regular";
 	drawHand();
+}
+function getAnswer() {
+	document.getElementsByTagName("iframe")[0].src = "https://tenhou.net/2/?q=" + shorthand
 }
 createHand();
