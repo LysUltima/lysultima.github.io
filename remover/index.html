@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Asian Character Remover</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" 
+      type="image/png" 
+      href="Chun.png">
+<script>
+function remover() {
+	var originalString = document.getElementById("mainText").value, str, jpcn, chara, counter, result = "<p>", resultRemoved = "<p>", num = 0;
+	var footnote = "", n = 0;
+	while (originalString.indexOf("<span") > -1) {
+		originalString = originalString.replace(originalString.slice(originalString.indexOf("<span"), originalString.indexOf(">", originalString.indexOf("<span"))) + ">", "");
+		originalString = originalString.replace("</span>", "");
+	}
+	while (originalString.indexOf("<p>") > -1) {
+	originalString = originalString.replace("<p>", "");
+	originalString = originalString.replace("</p>", "");
+	}
+	while (originalString != "") {
+		while (originalString.charCodeAt(0) == 10) { originalString = originalString.substr(1); }
+		str = originalString.split('\n',1)[0];
+		if (str == "") { str = originalString; originalString = ""; }
+		else { originalString = originalString.replace(str,""); }
+		jpcn = str.length;
+		counter = 0;
+		while (jpcn >= 0){
+			chara = str.slice(jpcn, jpcn + 1);
+			chara = chara.charCodeAt(0);
+			if (chara < 11900) { counter--; }
+			else { counter++; }
+			jpcn--;
+		}
+		if (originalString.charCodeAt(0) == 10) { originalString = originalString.substr(1); num = 0;}
+		if (originalString.charCodeAt(0) == 10) { originalString = originalString.substr(1); num = 1;}
+		if (counter <= 0) { 
+			if (num == 1) { result = result + str + "</p>\n<br>\n<p>"; }
+			else { result = result + str + "</p>\n<p>";}
+		}
+		else { resultRemoved = resultRemoved + "</p><p>" + str; }
+		while (originalString.charCodeAt(0) == 10) { originalString = originalString.substr(1); result = result + "</p> &nbsp; <p>"; }
+	}
+	result = result.substr(0, result.length - 4);
+	if (result.indexOf("[note]") > -1) {
+		footnote = "\n<hr>\n<ol>";
+	}
+	while (result.indexOf("[note]") > -1) {
+			n += 1;
+			var i = result.indexOf("[note]") + 6;
+			var j = result.indexOf("[/note]");
+			footnote = footnote +"\n<li>" + result.slice(i, j) + ' <a href="#note-' + n + '" id="footnote-' + n + '">↑</a></li>';
+			result = result.replace("[note]" + result.slice(i, j) + "[/note]", '<a href="#footnote-' + n + '" id="note-' + n + '"><sup>' + n + '</sup></a>');
+	}
+	if (n > 0) {
+		footnote = footnote + "\n</ol>";
+	}
+	document.getElementById("mainText").value = result + footnote;
+	document.getElementById("removedText").innerHTML = resultRemoved + "</p>";
+}
+</script>
+</head>
+<body>
+  <h3>Asian Character Remover</h3>
+  <p>Removes all lines with more Asian characters than latin characters. Also converts [note]Example footnote[/note] to a proper footnote. </p>
+  <p>If you have text formattings (italics, links, etc), paste your chapter into <a href="https://html5-editor.net/">this site</a>'s text editor (the one to the right). It will generate HTML on the left text box, which you should copy and paste back here.</p>
+  <p>Your result will be in HTML.</p>
+    <textarea id="mainText" placeholder="Paste your chapter here. I'll try my best!" rows="20" cols="200"></textarea>
+    <div><button style="background-color: hsl(300, 15%, 90%);" onclick="loliRemover()">Click Me~</button></div>
+  &nbsp;
+  <h4><p>Removed Text:</p></h4>
+  <div id="removedText"></div>
+</body>
